@@ -13,12 +13,20 @@ function wrap(line, maxLen) {
 
   for (var a = 0; a < wordArr.length; a++) {
     let currentWord = wordArr[a];
+    // console.log('currentWord: ', currentWord);
     if (currentLine.length + currentWord.length > maxLen) {
       output.push(currentLine);
-      currentLine = currentWord;
+      currentLine = currentWord + ' ';
     } else {
-      currentLine += currentWord + ' ';
+        if (currentLine.length + currentWord.length === maxLen){
+            currentLine += currentWord;
+            output.push(currentLine);
+        }
+        else {
+            currentLine += currentWord + ' ';
+        }
     }
+    console.log('currentLine: ', currentLine);
   }
   return output.join('\n');
 }

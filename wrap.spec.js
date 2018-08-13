@@ -9,7 +9,7 @@ describe('wrap()', function() {
     const phrase =
       'Lorem ipsum dolor sit eu amet, elit na magna sem amet nulla vel purus ac ligula.';
     const expectedOutput =
-      'Lorem ipsum dolor\n sit eu amet, elit na\n magna sem amet nulla\n vel purus ac ligula.';
+      'Lorem ipsum dolor\nsit eu amet, elit na\nmagna sem amet nulla\nvel purus ac ligula.';
     expect(wrap(phrase, 20)).to.equal(expectedOutput);
   });
 });
