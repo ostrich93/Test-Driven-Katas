@@ -1,34 +1,24 @@
 function wrap(line, maxLen) {
-  let output = [];
-
-  let wordArr = line.split(' ');
-  console.log('This is the word array =>', wordArr);
-
-  // wordArr.every(entry => !entry)
-  if (!line || typeof line !== 'string' || typeof maxLen !== 'number') {
+  if (typeof line !== 'string' || typeof maxLen !== 'number'){
     return '';
   }
 
-  let currentLine = '';
-
-  for (var a = 0; a < wordArr.length; a++) {
-    let currentWord = wordArr[a];
-    // console.log('currentWord: ', currentWord);
-    if (currentLine.length + currentWord.length > maxLen) {
-      output.push(currentLine);
-      currentLine = currentWord + ' ';
-    } else {
-        if (currentLine.length + currentWord.length === maxLen){
-            currentLine += currentWord;
-            output.push(currentLine);
-        }
-        else {
-            currentLine += currentWord + ' ';
-        }
-    }
-    console.log('currentLine: ', currentLine);
+  if (line.length <= maxLen){
+    return line;
   }
-  return output.join('\n');
+
+  const blankSpaceIndex = line.lastIndexOf(' ', maxLen);
+  let offset;
+  let numOfSpaces;
+  if (blankSpaceIndex > -1){
+    offset = blankSpaceIndex;
+    numOfSpaces = 1;
+  }
+  else {
+    offset = maxLen;
+    numOfSpaces = 0;
+  }
+  return line.substring(0, offset) + '\n' + wrap(line.substring(offset + numOfSpaces), maxLen);
 }
 
 module.exports = wrap;
